@@ -10,8 +10,9 @@ public class Geometry {
         Square.printSquareArea(5.0);
         Rectangle.printRectangleArea(3.0, 5.0);
         Rectangle.printRectangleArea(7.0, 6.0 );
-        Triangle.printPerimeter(8,9,10);
-        Triangle.printSquare(12,13,2);
+        Triangle my_triangle = new Triangle(8,9,10);
+        my_triangle.printPerimeter();
+        my_triangle.printSquare();
 
     }
 

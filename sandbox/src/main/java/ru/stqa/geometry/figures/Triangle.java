@@ -1,19 +1,28 @@
 package ru.stqa.geometry.figures;
-
 public class Triangle {
-    public static double perimeter(double a, double b, double c) {
-        return a + b + c;
+    double side_a;
+    double side_b;
+    double side_c;
+    public Triangle(double a, double b, double c) {
+        this.side_a = a;
+        this.side_b = b;
+        this.side_c = c;
     }
-    public static void printPerimeter(double a, double b, double c){
-        System.out.println(String.format("Периметр треугольника со сторонами %.2f, %.2f, %.2f равен %.2f", a, b, c, perimeter(a,b,c)));
+    public double perimeter() {
+        return this.side_a + this.side_b + this.side_c;
     }
-    public static double Square(double a, double b, double c){
-        var pp = perimeter(a, b, c)/2;
-        var almostSquare = pp*(pp-a)*(pp-b)*(pp-c);
+    public void printPerimeter(){
+        System.out.println(String.format("Периметр треугольника со сторонами %.2f, %.2f, %.2f равен %.2f",
+                this.side_a, this.side_b, this.side_c, perimeter()));
+    }
+    public double Square(){
+        var pp = perimeter()/2;
+        var almostSquare = pp*(pp-side_a)*(pp-side_b)*(pp-side_c);
         var S =  Math.sqrt(almostSquare);
         return Math.round(S*100.0)/100.0; /*; Добавила округление, чтобы в тесте не писать expected: 34.197039345533994*/
     }
-    public static void printSquare(double a, double b, double c) {
-    System.out.println(String.format("Площадь треугольника со сторонами %.2f, %.2f, %.2f равна %.2f", a, b, c, Square(a,b,c)));
+    public void printSquare() {
+    System.out.println(String.format("Площадь треугольника со сторонами %.2f, %.2f, %.2f равна %.2f",
+            this.side_a, this.side_b, side_c, Square()));
     }
 }
