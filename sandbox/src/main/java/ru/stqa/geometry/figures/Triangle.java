@@ -1,13 +1,5 @@
 package ru.stqa.geometry.figures;
-public class Triangle {
-    double side_a;
-    double side_b;
-    double side_c;
-    public Triangle(double a, double b, double c) {
-        this.side_a = a;
-        this.side_b = b;
-        this.side_c = c;
-    }
+public record Triangle (double side_a, double side_b, double side_c) {
     public double perimeter() {
         return this.side_a + this.side_b + this.side_c;
     }

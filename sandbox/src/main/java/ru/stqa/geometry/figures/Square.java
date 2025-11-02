@@ -1,14 +1,15 @@
 package ru.stqa.geometry.figures;
-
-public class Square {
-    public static void printSquareArea(double side) {
-        System.out.println(String.format("Площадь квадрата со стороной %.2f = %.2f",side, area(side)));
+public record Square (double a) {
+    public double perimeter() {
+        return 4*this.a;
     }
-    public static double area(double a) {
-        return a * a;
+    public void printPerimeter() {
+        System.out.println(String.format("Периметр квадрата со стороной %.2f равен %.2f", this.a, perimeter()));
     }
-
-    public static double perimeter(double a) {
-        return 4*a;
+    public double Square() {
+        return this.a * this.a;
+    }
+    public void printSquare() {
+        System.out.println(String.format("Площадь квадрата со стороной %.2f = %.2f",this.a, Square()));
     }
 }
