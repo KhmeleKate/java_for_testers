@@ -1,5 +1,13 @@
 package ru.stqa.geometry.figures;
 public record Triangle (double side_a, double side_b, double side_c) {
+    public Triangle {
+        if (side_a < 0 || side_b < 0 || side_c < 0){
+            throw new IllegalArgumentException("Triangle sides should be => 0");
+        }
+        if ((side_a + side_b < side_c)||(side_b + side_c < side_a)||(side_c + side_a < side_b)){
+            throw new IllegalArgumentException("The sum of any two sides must be no less than the third side");
+        }
+    }
     public double perimeter() {
         return this.side_a + this.side_b + this.side_c;
     }

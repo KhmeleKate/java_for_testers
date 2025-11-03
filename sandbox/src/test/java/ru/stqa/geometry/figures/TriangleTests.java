@@ -3,13 +3,15 @@ package ru.stqa.geometry.figures;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class RectangleTests {
+public class TriangleTests {
     @Test
-    void cannotCreateRectangleWithNegativeSide() {
+    void cannotCreateTriangleWithNegativeSide() {
         try {
-            new Rectangle(9.0, 9);
+            new Triangle(2.0, 2.0, 2.0);
             Assertions.fail();
+            //System.out.println("OK");
         } catch (IllegalArgumentException exception){
+            System.out.println(exception.getMessage());
         }
     }
 }
