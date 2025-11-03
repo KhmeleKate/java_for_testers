@@ -6,13 +6,25 @@ public class SquareTests {
     @Test
     void canCalculateArea() {
         Triangle my_triangle = new Triangle(8, 9, 10);
-        //Assertions.assertEquals(25.0, Square.area(5.0));
-        //Assertions.assertEquals(34.20, my_triangle.Square());
+        Assertions.assertEquals(34.20, my_triangle.Square());
+        Square my_square = new Square(3);
+        Assertions.assertEquals(9.0, my_square.Area());
     }
     @Test
     void canCalculatePerimeter() {
         Triangle my_triangle = new Triangle(8, 9, 10);
-       // Assertions.assertEquals(20, Square.perimeter(5.0));
-       // Assertions.assertEquals(27,  my_triangle.perimeter());
+        Square my_square = new Square(6);
+       Assertions.assertEquals(24, my_square.perimeter());
+       Assertions.assertEquals(27,  my_triangle.perimeter());
     }
+    @Test
+    void cannotCreateSquareWithNegativeSide() {
+        try {
+            new Square(-6.0);
+            Assertions.fail();
+        } catch (IllegalArgumentException exception){
+
+        }
+    }
+
 }
