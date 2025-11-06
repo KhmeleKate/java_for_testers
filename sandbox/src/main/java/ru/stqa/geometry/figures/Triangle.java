@@ -1,9 +1,11 @@
 package ru.stqa.geometry.figures;
-
 import java.util.Objects;
 
 public record Triangle (double side_a, double side_b, double side_c) {
     public Triangle {
+        double mMax = 0;
+        double mMin = 0;
+        double mMiddle = 0;
         if (side_a < 0 || side_b < 0 || side_c < 0){
             throw new IllegalArgumentException("Triangle sides should be => 0");
         }
@@ -28,7 +30,6 @@ public record Triangle (double side_a, double side_b, double side_c) {
     System.out.println(String.format("Площадь треугольника со сторонами %.2f, %.2f, %.2f равна %.2f",
             this.side_a, this.side_b, side_c, Square()));
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
