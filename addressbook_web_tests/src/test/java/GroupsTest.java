@@ -39,7 +39,6 @@ public class GroupsTest {
         driver.findElement(By.linkText("group page")).click();
 
     }
-
     private boolean isElementPresent(By locator) {
         try {
             driver.findElement(locator);
