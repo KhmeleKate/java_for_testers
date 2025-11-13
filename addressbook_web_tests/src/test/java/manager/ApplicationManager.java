@@ -1,16 +1,16 @@
+package manager;
+
 import model.Group;
-import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TestBase {
-    protected static WebDriver driver;
+public class ApplicationManager {
+    public static WebDriver driver;
 
-    @BeforeEach
-    public void setUp() {
+    public void init() {
         if (driver == null) {
             driver = new FirefoxDriver();
             Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
@@ -21,10 +21,9 @@ public class TestBase {
             driver.findElement(By.xpath("//input[@value=\'Login\']")).click();
             driver.findElement(By.linkText("groups")).click();
         }
-
     }
 
-    protected boolean isElementPresent(By locator) {
+    public boolean isElementPresent(By locator) {
         try {
             driver.findElement(locator);
             return true;
@@ -33,7 +32,7 @@ public class TestBase {
         }
     }
 
-    protected void CreateGroup(Group group) {
+    public void CreateGroup(Group group) {
         driver.findElement(By.name("new")).click();
         driver.findElement(By.name("group_name")).click();
         driver.findElement(By.name("group_name")).sendKeys(group.name());
@@ -44,7 +43,7 @@ public class TestBase {
         driver.findElement(By.linkText("group page")).click();
     }
 
-    protected void OpenGroupsPage() {
+    public void OpenGroupsPage() {
         if (!isElementPresent(By.name("new"))) {
             driver.findElement(By.linkText("groups")).click();
         }
