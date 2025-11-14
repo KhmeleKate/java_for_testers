@@ -7,7 +7,7 @@ public record Contact (String firstname, String middlename, String lastname, Str
         this("","","","","","","","","","","",
          "","","","","//option[. = '-']","//option[. = '-']",
                 "","//option[. = '-']",
-                "//option[. = '-']","", "//option[. = '[none]]']");
+                "//option[. = '-']","", "//option[1]");
     }
     public Contact contactWithAllFields(String firstname, String middlename, String lastname, String nickname, String title, String company, String address,
                                         String home, String mobile, String work, String fax, String email, String email2, String email3, String homepage,
