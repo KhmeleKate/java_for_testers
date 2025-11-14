@@ -1,5 +1,4 @@
 package manager;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
@@ -7,9 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class ApplicationManager {
-    protected WebDriver driver;
+    public WebDriver driver;
     private LoginHelper session;
     private GroupHelper groups;
+    public ContactHelper contacts;
     private HelperBase base;
 
     public void init() {
@@ -47,6 +47,12 @@ public class ApplicationManager {
     public HelperBase base() {
         base = new HelperBase(this);
         return base;
+    }
+    public ContactHelper contacts() {
+        if (contacts == null) {
+            contacts = new ContactHelper(this );
+        }
+        return contacts;
     }
 
 }
