@@ -18,10 +18,11 @@ public class GroupHelper {
 
     public void CreateGroup(Group group) {
         OpenGroupsPage();
+        manager.driver.findElement(By.linkText("groups")).click();
         manager.driver.findElement(By.name("new")).click();
         manager.base().FillFields(group);
         manager.driver.findElement(By.name("submit")).click();
-        manager.base.returnToTheGroupPage(By.linkText("group page"));
+        manager.base().returnToTheGroupPage(By.linkText("group page"));
     }
 
     public boolean isGroupPresent() {

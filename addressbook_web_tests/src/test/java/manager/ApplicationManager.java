@@ -10,7 +10,7 @@ public class ApplicationManager {
     protected WebDriver driver;
     private LoginHelper session;
     private GroupHelper groups;
-    HelperBase base;
+    private HelperBase base;
 
     public void init() {
         if (driver == null) {
@@ -19,7 +19,6 @@ public class ApplicationManager {
             driver.get("http://localhost/addressbook/");
             driver.manage().window().setSize(new Dimension(1162, 972));
             session().login("admin", "secret");
-            driver.findElement(By.linkText("groups")).click();
         }
     }
 
