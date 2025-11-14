@@ -38,7 +38,7 @@ public class ApplicationManager {
         }
     }
 
-    public GroupHelper groups (){
+    public GroupHelper groups() {
        if (groups == null) {
          groups = new GroupHelper(this);
        }

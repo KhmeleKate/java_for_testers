@@ -10,7 +10,7 @@ public class GroupHelper {
         this.manager = manager;
     }
 
-    public void OpenGroupsPage(manager) {
+    public void OpenGroupsPage() {
         if (!manager.isElementPresent(By.name("new"))) {
             manager.driver.findElement(By.linkText("groups")).click();
         }
@@ -31,12 +31,11 @@ public class GroupHelper {
     public boolean isGroupPresent() {
         OpenGroupsPage();
         return manager.isElementPresent(By.name("selected[]"));
-        }
     }
     public void deleteGroup() {
         OpenGroupsPage();
-        manager.driver.findElement(By.name("Selected[]")).click();
-        manager.driver.findElement(By.name("Delete")).click();
+        manager.driver.findElement(By.name("selected[]")).click();
+        manager.driver.findElement(By.name("delete")).click();
         manager.driver.findElement(By.linkText("group page")).click();
     }
 }

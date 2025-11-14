@@ -14,7 +14,7 @@ public class DeleteGroupTest extends TestBase {
         if (!app.groups().isGroupPresent()) {
             app.groups().CreateGroup(new Group("group name", "group header", "group footer"));
         }
-        app.deleteGroup();
+        app.groups().deleteGroup();
     }
 
 
