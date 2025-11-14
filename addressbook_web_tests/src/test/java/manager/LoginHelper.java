@@ -13,6 +13,7 @@ public class LoginHelper {
     void login(String user, String password) {
         manager.driver.findElement(By.name("pass")).sendKeys(password);
         manager.driver.findElement(By.name("user")).sendKeys(user);
-        manager.driver.findElement(By.xpath("//input[@value='Login']")).click();
+        manager.base().pressLogin();
     }
+
 }

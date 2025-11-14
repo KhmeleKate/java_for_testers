@@ -19,13 +19,9 @@ public class GroupHelper {
     public void CreateGroup(Group group) {
         OpenGroupsPage();
         manager.driver.findElement(By.name("new")).click();
-        manager.driver.findElement(By.name("group_name")).click();
-        manager.driver.findElement(By.name("group_name")).sendKeys(group.name());
-        manager.driver.findElement(By.name("group_header")).sendKeys(group.header());
-        manager.driver.findElement(By.name("group_footer")).click();
-        manager.driver.findElement(By.name("group_footer")).sendKeys(group.footer());
+        manager.base().FillFields(group);
         manager.driver.findElement(By.name("submit")).click();
-        manager.driver.findElement(By.linkText("group page")).click();
+        manager.base.returnToTheGroupPage(By.linkText("group page"));
     }
 
     public boolean isGroupPresent() {

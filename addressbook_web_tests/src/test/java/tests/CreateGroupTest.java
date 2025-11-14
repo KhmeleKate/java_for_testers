@@ -20,4 +20,14 @@ public class CreateGroupTest extends TestBase {
         app.groups().CreateGroup(new Group().withName("some Name"));
 
     }
+    @Test
+    public void CanCreateGroupsWithHeaderOnly() {
+        app.groups().CreateGroup(new Group().withHeader("some Header"));
+
+    }
+    @Test
+    public void CanCreateGroupsWithFooterOnly() {
+        app.groups().CreateGroup(new Group().withFooter("some Footer"));
+
+    }
 }

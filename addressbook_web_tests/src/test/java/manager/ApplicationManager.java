@@ -10,6 +10,7 @@ public class ApplicationManager {
     protected WebDriver driver;
     private LoginHelper session;
     private GroupHelper groups;
+    HelperBase base;
 
     public void init() {
         if (driver == null) {
@@ -44,4 +45,9 @@ public class ApplicationManager {
        }
        return groups;
     }
+    public HelperBase base() {
+        base = new HelperBase(this);
+        return base;
+    }
+
 }

@@ -1,11 +1,6 @@
 package tests;
-
-import manager.ApplicationManager;
 import model.Group;
 import org.junit.jupiter.api.Test;
-
-//import static manager.ApplicationManager.DeleteIfExists;
-
 public class DeleteGroupTest extends TestBase {
 
     @Test

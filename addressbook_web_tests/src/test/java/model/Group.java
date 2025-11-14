@@ -8,10 +8,10 @@ public record Group(String name, String header, String footer) {    //сокра
     public Group withName(String name) {
         return new Group(name, this.header,this.footer);
     }
-    public Group withHeader(String name) {
+    public Group withHeader(String header) {
         return new Group(this.name, header,this.footer);
     }
-    public Group withFooter(String name) {
+    public Group withFooter(String footer) {
         return new Group(this.name, this.header, footer);
     }
 }
