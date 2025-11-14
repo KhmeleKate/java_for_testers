@@ -2,7 +2,6 @@ package manager;
 
 import model.Contact;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class ContactHelper {
     private final ApplicationManager manager;
@@ -16,9 +15,15 @@ public class ContactHelper {
     }
     public void CreateContact(Contact contact) {
         OpenContactPage();
-       // manager.driver.findElement(By.cssSelector("select:nth-child(71) > option:nth-child(8)")).click();
-        //manager.driver.findElement(By.cssSelector("input:nth-child(75)")).click();
-        //manager.driver.findElement(By.linkText("home page")).click();
         manager.base().FillFieldsContact(contact);
+    }
+    public boolean isContactPresent() {
+        OpenContactPage();
+        return manager.isElementPresent(By.name("selected[]"));
+    }
+    public void deleteContact() {
+        manager.driver.findElement(By.linkText("home")).click();
+        manager.driver.findElement(By.name("selected[]")).click();
+        manager.driver.findElement(By.name("delete")).click();
     }
 }
