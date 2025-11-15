@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class ApplicationManager {
-    public WebDriver driver;
+    public  WebDriver driver;
     private LoginHelper session;
     private GroupHelper groups;
     private ContactHelper contacts;
@@ -57,7 +57,7 @@ public class ApplicationManager {
     }
     public ContactHelper contacts() {
         if (contacts == null) {
-            contacts = new ContactHelper(this );
+            contacts = new ContactHelper(this);
         }
         return contacts;
     }

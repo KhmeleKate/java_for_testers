@@ -17,13 +17,18 @@ public class ContactHelper {
         OpenContactPage();
         manager.base().FillFieldsContact(contact);
     }
-    public boolean isContactPresent() {
-        OpenContactPage();
-        return manager.isElementPresent(By.name("selected[]"));
-    }
     public void deleteContact() {
-        manager.driver.findElement(By.linkText("home")).click();
+        OpenHomePage();
         manager.driver.findElement(By.name("selected[]")).click();
         manager.driver.findElement(By.name("delete")).click();
+    }
+
+    private void OpenHomePage() {
+        manager.driver.findElement(By.linkText("home")).click();
+    }
+
+    public int getContactCount() {
+        OpenHomePage();
+        return manager.driver.findElements(By.name("selected[]")).size();
     }
 }
