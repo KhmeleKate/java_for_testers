@@ -1,5 +1,4 @@
 package manager;
-
 import model.Group;
 import org.openqa.selenium.By;
 
@@ -18,21 +17,22 @@ public class GroupHelper {
 
     public void CreateGroup(Group group) {
         OpenGroupsPage();
-        manager.driver.findElement(By.linkText("groups")).click();
+      //  manager.driver.findElement(By.linkText("groups")).click();
         manager.driver.findElement(By.name("new")).click();
         manager.base().FillFields(group);
         manager.driver.findElement(By.name("submit")).click();
         manager.base().returnToTheGroupPage(By.linkText("group page"));
     }
 
-    public boolean isGroupPresent() {
-        OpenGroupsPage();
-        return manager.isElementPresent(By.name("selected[]"));
-    }
-    public void deleteGroup() {
+   public void deleteGroup() {
         OpenGroupsPage();
         manager.driver.findElement(By.name("selected[]")).click();
         manager.driver.findElement(By.name("delete")).click();
         manager.driver.findElement(By.linkText("group page")).click();
     }
-}
+
+    public int getCount() {
+        OpenGroupsPage();
+        return manager.driver.findElements(By.name("selected[]")).size();
+    }
+    }

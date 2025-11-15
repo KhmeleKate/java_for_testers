@@ -1,13 +1,21 @@
 package tests;
 
 import model.Group;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.openqa.selenium.By;
 
 public class CreateGroupTest extends TestBase {
 
-    @Test
-    public void CanCreateGroups() {
-        app.groups().CreateGroup(new Group("name", "header", "footer"));
+    @ParameterizedTest
+    @ValueSource(strings = {"groupName","group name'"})
+    public void CanCreateGroups(String name) {
+       int groupCount = app.groups().getCount();
+       app.groups().CreateGroup(new Group(name, "header", "footer"));
+       int newGroupCount = app.groups().getCount();
+       Assertions.assertEquals(groupCount + 1, newGroupCount);
     }
 
     @Test
