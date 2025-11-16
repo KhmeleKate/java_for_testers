@@ -2,12 +2,22 @@ package manager;
 
 import model.Contact;
 import org.openqa.selenium.By;
+import java.util.Random;
 
 public class ContactHelper {
     private final ApplicationManager manager;
 
     public ContactHelper (ApplicationManager manager) {
         this.manager = manager;
+    }
+
+    public static String randomString(int n) {
+        var random = new Random();
+        String result = "";
+        for (int i = 0; i < n; i++) {
+            result = result + (char) ('a' + random.nextInt(26));
+        }
+        return result;
     }
 
     public void OpenContactPage() {
