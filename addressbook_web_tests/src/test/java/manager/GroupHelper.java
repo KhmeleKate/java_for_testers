@@ -35,4 +35,9 @@ public class GroupHelper {
         OpenGroupsPage();
         return manager.driver.findElements(By.name("selected[]")).size();
     }
+    private static String randomString() {
+        int number = (int) (Math.random() * 1000);
+        String str = number + "";
+        return str;
+    }
     }
