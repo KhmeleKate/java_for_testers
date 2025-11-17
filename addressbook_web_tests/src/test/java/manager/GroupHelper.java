@@ -3,7 +3,11 @@ package manager;
 import model.Group;
 import org.openqa.selenium.By;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+
+import static java.lang.String.format;
 
 public class GroupHelper {
     private final ApplicationManager manager;
@@ -35,15 +39,34 @@ public class GroupHelper {
         manager.base().returnToTheGroupPage(By.linkText("group page"));
     }
 
-    public void deleteGroup() {
+    public void deleteGroup(Group group) {
         OpenGroupsPage();
-        manager.driver.findElement(By.name("selected[]")).click();
+        selectGroup(group);
         manager.driver.findElement(By.name("delete")).click();
         manager.driver.findElement(By.linkText("group page")).click();
+    }
+
+    private void selectGroup(Group group) {
+
+        manager.driver.findElement(By.cssSelector(String.format("input[value='%s']", group.id()))).click();
+
+
     }
 
     public int getCount() {
         OpenGroupsPage();
         return manager.driver.findElements(By.name("selected[]")).size();
+    }
+
+    public List<Group> getList() {
+        var groups = new ArrayList<Group>();
+        var spans = manager.driver.findElements(By.cssSelector("span.group"));
+        for (var span: spans) {
+            var name = span.getText();
+            var checkbox = span.findElement(By.name("selected[]"));
+            var id = checkbox.getAttribute("value");
+            groups.add(new Group().withId(id).withName(name));
+        }
+        return groups;
     }
 }

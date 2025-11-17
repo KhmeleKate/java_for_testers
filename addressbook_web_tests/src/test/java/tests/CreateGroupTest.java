@@ -14,12 +14,15 @@ public class CreateGroupTest extends TestBase {
         for (var name : List.of("", "group name")) {
             for (var header : List.of("", "group header")) {
                 for (var footer : List.of("", "group footer")) {
-                    result.add(new Group(name, header, footer));
+                    result.add(new Group().withName(name).withHeader(header).withFooter(footer));
                 }
             }
         }
         for (int i = 0; i < 5; i++) {
-            result.add(new Group(GroupHelper.randomString(i * 10), GroupHelper.randomString(i * 10),(GroupHelper.randomString(i * 10))));
+            result.add(new Group()
+                    .withName(GroupHelper.randomString(i * 10))
+                    .withHeader(GroupHelper.randomString(i * 10))
+                    .withFooter(GroupHelper.randomString(i * 10)));
         }
         return result;
     }
@@ -42,7 +45,7 @@ public class CreateGroupTest extends TestBase {
     }
     public static List<Group> negativeGroupProvider() {
         var result = new ArrayList<Group>(List.of(
-                new Group("group name'", "", "")));
+                new Group("", "group name'", "", "")));
         return result;
     }
 }
