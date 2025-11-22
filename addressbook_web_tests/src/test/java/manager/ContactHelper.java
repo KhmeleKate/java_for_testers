@@ -3,6 +3,7 @@ package manager;
 import model.Contact;
 import model.Group;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,24 +34,26 @@ public class ContactHelper {
     }
     public void deleteContact(Contact contact) {
         OpenHomePage();
-        manager.driver.findElement(By.name("selected[]")).click();
+        selectContact(contact);
         manager.driver.findElement(By.name("delete")).click();
+    }
+
+    public void selectContact(Contact contact) {
+        manager.driver.findElement(By.cssSelector(String.format("input[value='%s']", contact.id()))).click();
     }
 
     private void OpenHomePage() {
         manager.driver.findElement(By.linkText("home")).click();
     }
 
-     public List<Contact> getListContact() {
+    public List<Contact> getListContact() {
         OpenHomePage();
         var contacts = new ArrayList<Contact>();
-        var spans = manager.driver.findElements(By.cssSelector("span.contact"));
-        for (var span: spans) {
-            var firstname = span.getText();
-            var checkbox = span.findElement(By.name("selected[]"));
-            var id = checkbox.getAttribute("value");
-            contacts.add(new Contact().withIdContact(id).withFirstname(firstname));
-        }
+        var rows = manager.driver.findElements(By.cssSelector("tr[name='entry']"));
+        for (var row : rows) {
+                var checkbox = row.findElement(By.name("selected[]"));
+                var id = checkbox.getAttribute("value");
+        contacts.add(new Contact().withIdContact(id));}
         return contacts;
     }
 

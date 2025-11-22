@@ -3,6 +3,7 @@ package tests;
 import model.Contact;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -13,13 +14,13 @@ public class DeleteContactTest extends TestBase {
         if (app.contacts().getContactCount() == 0) {
             app.contacts().CreateContact(new Contact());
         }
-        app.contacts().deleteContact(new Contact("","", "", "", "", "", "", "", "", "", "", "",
+        /*app.contacts().deleteContact(new Contact("","", "", "", "", "", "", "", "", "", "", "",
                 "", "", "", "", "//option[. = '-']", "//option[. = '-']",
                 "", "//option[. = '-']",
-                "//option[. = '-']", "", "//option[1]"));
+                "//option[. = '-']", "", "//option[1]"));*/
 
-        var oldContacts = app.contacts().getListContact();
         var random = new Random();
+        var oldContacts = app.contacts().getListContact();
         var index = random.nextInt(oldContacts.size());
         app.contacts().deleteContact(oldContacts.get(index));
         var newContact = app.contacts().getListContact();

@@ -58,10 +58,8 @@ public class GroupHelper {
         var spans = manager.driver.findElements(By.cssSelector("span.group"));
         for (var span: spans) {
             var name = span.getText();
-            System.out.println(name);
             var checkbox = span.findElement(By.name("selected[]"));
             var id = checkbox.getAttribute("value");
-            System.out.println(id);
             groups.add(new Group().withId(id).withName(name));
         }
         return groups;
