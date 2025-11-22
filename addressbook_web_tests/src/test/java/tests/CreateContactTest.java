@@ -72,7 +72,7 @@ public class CreateContactTest extends TestBase {
     }
     public static List<Contact> negativeContactProvider() {
         var result = new ArrayList<Contact>(List.of(
-                new Contact("Contact firstname'","","","","","","","","","","",
+                new Contact("","Contact firstname'","","","","","","","","","","",
                         "","","","","//option[1]","//option[1]",
                         "","//option[1]",
                         "//option[1]","", "//option[1]")));
