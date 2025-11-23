@@ -53,11 +53,13 @@ public class ContactHelper {
         for (var row : rows) {
                 var checkbox = row.findElement(By.name("selected[]"));
                 var id = checkbox.getAttribute("value");
-                contacts.add(new Contact().withIdContact(id));
+                var cells = row.findElements(By.tagName("td"));
+                var lastName = cells.get(1).getText();
+                var firstName = cells.get(2).getText();
+                contacts.add(new Contact().withIdContact(id).withFirstname(firstName).withlastName(lastName));
         }
         return contacts;
     }
-
 
     public int getContactCount() {
         OpenHomePage();

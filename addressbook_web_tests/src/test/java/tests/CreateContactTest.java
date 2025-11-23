@@ -60,11 +60,15 @@ public class CreateContactTest extends TestBase {
         var oldContacts = app.contacts().getListContact();
         app.contacts().CreateContact(contact);
         var newContacts = app.contacts().getListContact();
-        Comparator<Contact> comparedBy = Comparator.comparingInt(o -> Integer.parseInt(o.id()));
+        Comparator<Contact> comparedBy = Comparator
+                .comparingInt((Contact o) -> Integer.parseInt(o.id()))
+                .thenComparing(Contact::firstname)
+                .thenComparing(Contact::lastname);
         newContacts.sort(comparedBy);
         var expectedList = new ArrayList<>(oldContacts);
-        //expectedList.add(contact.withIdContact(newContacts.get(newContacts.size() - 1).id()));
-        expectedList.add(contact.withId(newContacts.get(newContacts.size() - 1).id()));
+        expectedList.add(contact.withFIO(newContacts.get(newContacts.size() - 1).id(),
+                newContacts.get(newContacts.size() - 1).firstname(),
+                newContacts.get(newContacts.size() - 1).lastname()));
         expectedList.sort(comparedBy);
         Assertions.assertEquals(newContacts,expectedList);
     }

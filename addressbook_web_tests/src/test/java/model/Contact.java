@@ -62,12 +62,15 @@ public record Contact (String id, String firstname, String middlename, String la
                 home,this. mobile,this. work,this.fax,this.email,this.email2,this.email3,this.homepage,this.
                 bday,this.bmonth,this.byear,this.aday,this.amonth,this.ayear,this.new_group);
     }
-    public Contact withMiddlename(String middlename) {
-        return new Contact(this.id,this.firstname, middlename, this.lastname,this. nickname,this.title,this.company,this.address,this.
+    public Contact withlastName(String lastname) {
+        return new Contact(this.id,this.firstname, this.middlename, lastname,this. nickname,this.title,this.company,this.address,this.
                 home,this. mobile,this. work,this.fax,this.email,this.email2,this.email3,this.homepage,this.
                 bday,this.bmonth,this.byear,this.aday,this.amonth,this.ayear,this.new_group);
     }
-    public Contact withId(String id) {
-        return new Contact(id);
+
+    public Contact withFIO(String id, String firstname, String lastname) {
+        return new Contact(id,firstname, "", lastname,"","","","","","","","",
+                "","","","","//option[. = '-']","//option[. = '-']",
+                "","//option[. = '-']", "//option[. = '-']","", "//option[1]");
     }
-    }
+}
