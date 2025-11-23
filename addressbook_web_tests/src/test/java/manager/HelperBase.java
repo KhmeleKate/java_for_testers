@@ -4,6 +4,7 @@ import model.Contact;
 import model.Group;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 public class HelperBase {
     private final ApplicationManager manager;
@@ -90,7 +91,11 @@ public class HelperBase {
         manager.driver.findElement(By.linkText("home page")).click();
     }
     void EditFillFieldsContact(Contact contact) {
-        manager.driver.findElement(By.name("firstname")).click();
+
+        WebElement element = manager.driver.findElement(By.name("firstname"));
+        //manager.driver.findElement(By.name("firstname")).click();
+        Actions builder = new Actions(manager.driver);
+        builder.doubleClick(element).perform();
         manager.driver.findElement(By.name("firstname")).sendKeys(contact.firstname());
         manager.driver.findElement(By.name("middlename")).click();
         manager.driver.findElement(By.name("middlename")).sendKeys(contact.middlename());

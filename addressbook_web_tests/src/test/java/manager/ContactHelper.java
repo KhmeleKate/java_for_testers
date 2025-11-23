@@ -1,12 +1,12 @@
 package manager;
 
 import model.Contact;
-import model.Group;
 import org.openqa.selenium.By;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 
 public class ContactHelper {
     private final ApplicationManager manager;
@@ -68,5 +68,7 @@ public class ContactHelper {
     public void modifyContact(Contact contact, Contact modified) {
         OpenHomePage();
         manager.driver.findElement(By.cssSelector(String.format("a[href^='edit.php?id=%s']", contact.id()))).click();
+        manager.base().EditFillFieldsContact(modified);
+        manager.driver.findElement(By.name("update")).click();
     }
 }

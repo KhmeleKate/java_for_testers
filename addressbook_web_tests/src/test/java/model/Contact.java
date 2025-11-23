@@ -77,4 +77,9 @@ public record Contact (String id, String firstname, String middlename, String la
                 "", "", "", "", "//option[. = '-']", "//option[. = '-']",
                 "", "//option[. = '-']", "//option[. = '-']", "", "//option[1]");
     }
+    public Contact ModifyContact(String firstname) {
+        return new Contact(this.id, firstname, this.middlename, this.lastname, this.nickname, this.title, this.company, this.address, this.
+                home, this.mobile, this.work, this.fax, this.email, this.email2, this.email3, this.homepage, this.
+                bday, this.bmonth, this.byear, this.aday, this.amonth, this.ayear, null);
+    }
 }
