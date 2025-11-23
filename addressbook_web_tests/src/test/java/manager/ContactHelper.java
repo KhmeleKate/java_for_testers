@@ -53,7 +53,8 @@ public class ContactHelper {
         for (var row : rows) {
                 var checkbox = row.findElement(By.name("selected[]"));
                 var id = checkbox.getAttribute("value");
-        contacts.add(new Contact().withIdContact(id));}
+                contacts.add(new Contact().withIdContact(id));
+        }
         return contacts;
     }
 

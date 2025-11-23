@@ -11,6 +11,13 @@ public record Contact (String id, String firstname, String middlename, String la
                 "","//option[. = '-']",
                 "//option[. = '-']","", "//option[1]");
     }
+    public Contact (String id) {
+        this(id,"","","","","","","","","","","",
+                "","","","","//option[. = '-']","//option[. = '-']",
+                "","//option[. = '-']",
+                "//option[. = '-']","", "//option[1]");
+    }
+
     public Contact contactWithAllFields(String firstname, String middlename, String lastname, String nickname, String title, String company, String address,
                                         String home, String mobile, String work, String fax, String email, String email2, String email3, String homepage,
                                         String bday,String bmonth,String byear,String aday,String amonth,String ayear,String new_group) {
@@ -60,6 +67,7 @@ public record Contact (String id, String firstname, String middlename, String la
                 home,this. mobile,this. work,this.fax,this.email,this.email2,this.email3,this.homepage,this.
                 bday,this.bmonth,this.byear,this.aday,this.amonth,this.ayear,this.new_group);
     }
-
-
-}
+    public Contact withId(String id) {
+        return new Contact(id);
+    }
+    }
