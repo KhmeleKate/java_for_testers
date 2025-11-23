@@ -70,7 +70,7 @@ public class CreateContactTest extends TestBase {
                 newContacts.get(newContacts.size() - 1).firstname(),
                 newContacts.get(newContacts.size() - 1).lastname()));
         expectedList.sort(comparedBy);
-        Assertions.assertEquals(newContacts,expectedList);
+        Assertions.assertEquals(newContacts, expectedList);
     }
 
     @ParameterizedTest
@@ -81,12 +81,13 @@ public class CreateContactTest extends TestBase {
         int newContactCount = app.contacts().getContactCount();
         Assertions.assertEquals(contactCount, newContactCount);
     }
+
     public static List<Contact> negativeContactProvider() {
         var result = new ArrayList<Contact>(List.of(
-                new Contact("","Contact firstname'","","","","","","","","","","",
-                        "","","","","//option[1]","//option[1]",
-                        "","//option[1]",
-                        "//option[1]","", "//option[1]")));
+                new Contact("", "Contact firstname'", "", "", "", "", "", "", "", "", "", "",
+                        "", "", "", "", "//option[1]", "//option[1]",
+                        "", "//option[1]",
+                        "//option[1]", "", "//option[1]")));
         return result;
     }
 }
