@@ -1,6 +1,5 @@
-package tests;
-import model.Group;
-import manager.GroupHelper;
+package ru.stqa.addressbook.tests;
+import ru.stqa.addressbook.model.Group;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;

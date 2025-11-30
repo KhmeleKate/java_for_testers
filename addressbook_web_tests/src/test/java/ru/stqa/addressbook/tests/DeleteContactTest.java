@@ -1,9 +1,8 @@
-package tests;
+package ru.stqa.addressbook.tests;
 
-import model.Contact;
+import ru.stqa.addressbook.model.Contact;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 
 import java.util.ArrayList;
 import java.util.Random;

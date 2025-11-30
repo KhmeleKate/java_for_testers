@@ -1,7 +1,7 @@
-package tests;
+package ru.stqa.addressbook.tests;
 
-import manager.GroupHelper;
-import model.Group;
+import ru.stqa.addressbook.common.Common;
+import ru.stqa.addressbook.model.Group;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -21,9 +21,9 @@ public class CreateGroupTest extends TestBase {
         }
         for (int i = 0; i < 5; i++) {
             result.add(new Group()
-                    .withName(GroupHelper.randomString(i * 10))
-                    .withHeader(GroupHelper.randomString(i * 10))
-                    .withFooter(GroupHelper.randomString(i * 10)));
+                    .withName(Common.randomString(i * 10))
+                    .withHeader(Common.randomString(i * 10))
+                    .withFooter(Common.randomString(i * 10)));
         }
         return result;
     }

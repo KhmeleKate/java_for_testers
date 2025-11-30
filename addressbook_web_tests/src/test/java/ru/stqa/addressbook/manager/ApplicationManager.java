@@ -1,4 +1,4 @@
-package manager;
+package ru.stqa.addressbook.manager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
@@ -25,7 +25,7 @@ public class ApplicationManager {
         }
             Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
             driver.get("http://localhost/addressbook/");
-            driver.manage().window().setSize(new Dimension(1362, 1172));
+            driver.manage().window().setSize(new Dimension(962, 972));
             session().login("admin", "secret");
         }
 

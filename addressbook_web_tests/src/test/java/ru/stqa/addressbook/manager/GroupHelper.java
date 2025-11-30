@@ -1,25 +1,15 @@
-package manager;
-import model.Group;
+package ru.stqa.addressbook.manager;
+import ru.stqa.addressbook.model.Group;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class GroupHelper {
     private ApplicationManager manager;
 
     public GroupHelper(ApplicationManager manager) {
         this.manager = manager;
-    }
-
-    public static String randomString(int n) {
-        var random = new Random();
-        String result = "";
-        for (int i = 0; i < n; i++) {
-            result = result + (char)('a' + random.nextInt(26));
-        }
-        return result;
     }
 
     public void OpenGroupsPage() {

@@ -1,8 +1,10 @@
-package manager;
+package ru.stqa.addressbook.manager;
 
-import model.Contact;
+import ru.stqa.addressbook.model.Contact;
 import org.openqa.selenium.By;
 
+import java.io.File;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -23,6 +25,12 @@ public class ContactHelper {
         }
         return result;
     }
+    public static String randomFile(String dir){
+        var fileNames = new File(dir).list();
+        var random = new Random();
+        var index = random.nextInt(fileNames.length);
+        return Paths.get(dir, fileNames[index]).toString();
+    }
 
     public void OpenContactPage() {
         manager.driver.findElement(By.linkText("add new")).click();
@@ -30,6 +38,7 @@ public class ContactHelper {
     public void CreateContact(Contact contact) {
         OpenContactPage();
         manager.base().FillFieldsContact(contact);
+        OpenHomePage();
     }
     public void deleteContact(Contact contact) {
         OpenHomePage();

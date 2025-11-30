@@ -1,10 +1,12 @@
-package manager;
+package ru.stqa.addressbook.manager;
 
-import model.Contact;
-import model.Group;
+import ru.stqa.addressbook.model.Contact;
+import ru.stqa.addressbook.model.Group;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+
+import java.nio.file.Paths;
 
 public class HelperBase {
     private final ApplicationManager manager;
@@ -25,7 +27,7 @@ public class HelperBase {
         manager.driver.findElement(By.name("group_footer")).click();
         manager.driver.findElement(By.name("group_footer")).sendKeys(group.footer());
     }
-    void FillFieldsContact(Contact contact) {
+    public void FillFieldsContact(Contact contact) {
         manager.driver.findElement(By.name("firstname")).click();
         manager.driver.findElement(By.name("firstname")).sendKeys(contact.firstname());
         manager.driver.findElement(By.name("middlename")).click();
@@ -54,9 +56,10 @@ public class HelperBase {
         manager.driver.findElement(By.name("email2")).sendKeys(contact.email2());
         manager.driver.findElement(By.name("email3")).click();
         manager.driver.findElement(By.name("email3")).sendKeys(contact.email3());
+        attach(By.name("photo"),contact.photo());
         manager.driver.findElement(By.name("homepage")).click();
         manager.driver.findElement(By.name("homepage")).sendKeys(contact.homepage());
-        {
+        /*{
             WebElement dropdown = manager.driver.findElement(By.name("bday"));
             dropdown.findElement(By.xpath(contact.bday())).click();
         }
@@ -88,7 +91,10 @@ public class HelperBase {
         }
         //manager.driver.findElement(By.cssSelector("select:nth-child(71) > option:nth-child(8)")).click();
         manager.driver.findElement(By.cssSelector("input:nth-child(75)")).click();
-        manager.driver.findElement(By.linkText("home page")).click();
+        manager.driver.findElement(By.linkText("home page")).click();*/
+        manager.driver.findElement(By.name("submit")).click();
+        //manager.driver.findElement(By.linkText("home page")).click();
+
     }
     void EditFillFieldsContact(Contact contact) {
 
@@ -154,5 +160,8 @@ public class HelperBase {
 
     void returnToTheGroupPage(By group_page) {
         manager.driver.findElement(group_page).click();
+    }
+    protected void attach(By locator, String file) {
+        manager.driver.findElement(locator).sendKeys(Paths.get(file).toAbsolutePath().toString());
     }
 }

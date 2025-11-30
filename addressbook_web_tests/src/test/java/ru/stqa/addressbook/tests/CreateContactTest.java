@@ -1,6 +1,6 @@
-package tests;
+package ru.stqa.addressbook.tests;
 
-import model.Contact;
+import ru.stqa.addressbook.model.Contact;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,6 +8,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
+import static ru.stqa.addressbook.manager.ContactHelper.randomFile;
+import static ru.stqa.addressbook.manager.ContactHelper.randomString;
 
 public class CreateContactTest extends TestBase {
     private static final String[] Fields = {
@@ -31,7 +34,7 @@ public class CreateContactTest extends TestBase {
         app.contacts().CreateContact(new Contact().contactWithAllFields("Name", "Middle", "Last", "Nickname",
                 "title", "company", "address", "home", "mobile", "work", "fax", "1@e1.ru",
                 "2@e1.ru", "2@e1.ru", "homepage", "//option[. = '28']", "//option[. = 'December']",
-                "2020", "//option[. = '31']", "//option[. = 'January']", "2030", "//option[2]"));
+                "2020", "//option[. = '31']", "//option[. = 'January']", "2030", "//option[2]",""));
         int newContactCount = app.contacts().getContactCount();
         Assertions.assertEquals(contactCount + 1, newContactCount);
     }
@@ -52,6 +55,14 @@ public class CreateContactTest extends TestBase {
                 List.of("nickname", "fax", "homepage", "firstname"),
                 10));
         return result;
+    }
+    @Test
+    void  createContact() {
+        var contact = new Contact().
+        withFirstname(randomString(10)).
+        withlastName(randomString(10)).
+        withPhoto(randomFile("src/test/resources/images/"));
+        app.contacts().CreateContact(contact);
     }
 
     @ParameterizedTest
@@ -87,7 +98,7 @@ public class CreateContactTest extends TestBase {
                 new Contact("", "Contact firstname'", "", "", "", "", "", "", "", "", "", "",
                         "", "", "", "", "//option[1]", "//option[1]",
                         "", "//option[1]",
-                        "//option[1]", "", "//option[1]")));
+                        "//option[1]", "", "//option[1]","")));
         return result;
     }
 }
