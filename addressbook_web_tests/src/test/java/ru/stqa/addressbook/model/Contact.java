@@ -1,31 +1,33 @@
 package ru.stqa.addressbook.model;
 import ru.stqa.addressbook.manager.ContactHelper;
+
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
 public record Contact (String id, String firstname, String middlename, String lastname, String nickname, String title, String company, String address,
                        String home, String mobile, String work, String fax, String email, String email2, String email3, String homepage,
-                       String bday, String bmonth, String byear, String aday, String amonth, String ayear, String new_group, String photo) {
+                       String bday, String bmonth, String byear, String aday, String amonth, String ayear, String new_group, File photo) {
     public Contact() {
         this("", "", "", "", "", "", "", "", "", "", "", "",
                 "", "", "", "", "//option[. = '-']", "//option[. = '-']",
                 "", "//option[. = '-']",
-                "//option[. = '-']", "", "//option[1]","");
+                "//option[. = '-']", "", "//option[1]",new File("src/test/resources/images/avatar.png"));
     }
 
     public Contact(String id) {
         this(id, "", "", "", "", "", "", "", "", "", "", "",
                 "", "", "", "", "//option[. = '-']", "//option[. = '-']",
                 "", "//option[. = '-']",
-                "//option[. = '-']", "", "//option[1]", "");
+                "//option[. = '-']", "", "//option[1]", new File("src/test/resources/images/avatar.png"));
     }
 
     public Contact contactWithAllFields(String firstname, String middlename, String lastname, String nickname, String title, String company, String address,
                                         String home, String mobile, String work, String fax, String email, String email2, String email3, String homepage,
-                                        String bday, String bmonth, String byear, String aday, String amonth, String ayear, String new_group,String photo) {
+                                        String bday, String bmonth, String byear, String aday, String amonth, String ayear, String new_group,File photo) {
         return new Contact(id, firstname, middlename, lastname, nickname, title, company, address,
                 home, mobile, work, fax, email, email2, email3, homepage,
-                bday, bmonth, byear, aday, amonth, ayear, new_group,photo);
+                bday, bmonth, byear, aday, amonth, ayear, new_group, photo);
     }
 
     //Метод, который принимает список, и согласно такому списку в дальнейшем определяется, какие поля будут рандомно заполнены
@@ -54,7 +56,7 @@ public record Contact (String id, String firstname, String middlename, String la
                 "//option[. = '-']",
                 "",
                 "//option[1]",
-                "");
+                new File("src/test/resources/images/avatar.png"));
     }
 
     public Contact contactWithSomeFields(List<String> field_name, int str_size) {
@@ -80,7 +82,7 @@ public record Contact (String id, String firstname, String middlename, String la
                 "//option[. = '-']",
                 "//option[. = '-']",
                 "",
-                "//option[1]", "");
+                "//option[1]", new File("src/test/resources/images/avatar.png"));
     }
 
 
@@ -105,9 +107,9 @@ public record Contact (String id, String firstname, String middlename, String la
     public Contact withFIO(String id, String firstname, String lastname) {
         return new Contact(id, firstname, "", lastname, "", "", "", "", "", "", "", "",
                 "", "", "", "", "//option[. = '-']", "//option[. = '-']",
-                "", "//option[. = '-']", "//option[. = '-']", "", "//option[1]","");
+                "", "//option[. = '-']", "//option[. = '-']", "", "//option[1]",new File("src/test/resources/images/avatar.png"));
     }
-    public Contact withPhoto(String photo) {
+    public Contact withPhoto(File photo) {
         return new Contact(this.id, this.firstname, this.middlename, this.lastname, this.nickname, this.title, this.company, this.address, this.
                 home, this.mobile, this.work, this.fax, this.email, this.email2, this.email3, this.homepage, this.
                 bday, this.bmonth, this.byear, this.aday, this.amonth, this.ayear, this.new_group, photo);

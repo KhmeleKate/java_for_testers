@@ -56,7 +56,7 @@ public class HelperBase {
         manager.driver.findElement(By.name("email2")).sendKeys(contact.email2());
         manager.driver.findElement(By.name("email3")).click();
         manager.driver.findElement(By.name("email3")).sendKeys(contact.email3());
-        attach(By.name("photo"),contact.photo());
+        attach(By.name("photo"), contact.photo().toString());
         manager.driver.findElement(By.name("homepage")).click();
         manager.driver.findElement(By.name("homepage")).sendKeys(contact.homepage());
         /*{

@@ -25,11 +25,11 @@ public class ContactHelper {
         }
         return result;
     }
-    public static String randomFile(String dir){
+    public static File randomFile(String dir){
         var fileNames = new File(dir).list();
         var random = new Random();
         var index = random.nextInt(fileNames.length);
-        return Paths.get(dir, fileNames[index]).toString();
+        return new File(Paths.get(dir, fileNames[index]).toString());
     }
 
     public void OpenContactPage() {

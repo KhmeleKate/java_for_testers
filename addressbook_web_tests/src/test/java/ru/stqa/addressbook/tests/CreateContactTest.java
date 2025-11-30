@@ -1,10 +1,15 @@
 package ru.stqa.addressbook.tests;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import ru.stqa.addressbook.model.Contact;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -13,7 +18,7 @@ import static ru.stqa.addressbook.manager.ContactHelper.randomFile;
 import static ru.stqa.addressbook.manager.ContactHelper.randomString;
 
 public class CreateContactTest extends TestBase {
-    private static final String[] Fields = {
+    public static final String[] Fields = {
             "firstname", "middlename", "lastname",
             "nickname", "title", "company", "address",
             "home", "mobile", "work", "fax", "email",
@@ -34,14 +39,14 @@ public class CreateContactTest extends TestBase {
         app.contacts().CreateContact(new Contact().contactWithAllFields("Name", "Middle", "Last", "Nickname",
                 "title", "company", "address", "home", "mobile", "work", "fax", "1@e1.ru",
                 "2@e1.ru", "2@e1.ru", "homepage", "//option[. = '28']", "//option[. = 'December']",
-                "2020", "//option[. = '31']", "//option[. = 'January']", "2030", "//option[2]",""));
+                "2020", "//option[. = '31']", "//option[. = 'January']", "2030", "//option[2]",new File("src/resources/images/avatar.png")));
         int newContactCount = app.contacts().getContactCount();
         Assertions.assertEquals(contactCount + 1, newContactCount);
     }
 
-    public static List<Contact> contactProvider() {
+    public static List<Contact> contactProvider() throws IOException {
         var result = new ArrayList<Contact>();
-        for (String f_name : Fields) {
+        /*for (String f_name : Fields) {
             result.add(new Contact().contactWithSomeFields(List.of(f_name), 5));
         }
         for (int i = 0; i < 3; i++) {
@@ -53,7 +58,10 @@ public class CreateContactTest extends TestBase {
                 5));
         result.add(new Contact().contactWithSomeFields(
                 List.of("nickname", "fax", "homepage", "firstname"),
-                10));
+                10));*/
+    var mapper = new XmlMapper();
+        var value = mapper.readValue((new File("contacts.xml")), new TypeReference<List<Contact>>() {});
+        result.addAll(value);
         return result;
     }
     @Test
@@ -98,7 +106,7 @@ public class CreateContactTest extends TestBase {
                 new Contact("", "Contact firstname'", "", "", "", "", "", "", "", "", "", "",
                         "", "", "", "", "//option[1]", "//option[1]",
                         "", "//option[1]",
-                        "//option[1]", "", "//option[1]","")));
+                        "//option[1]", "", "//option[1]",new File("src/test/resources/images/avatar.png"))));
         return result;
     }
 }
