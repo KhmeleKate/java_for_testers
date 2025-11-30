@@ -1,30 +1,32 @@
 package ru.stqa.addressbook.tests;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.stqa.addressbook.common.Common;
 import ru.stqa.addressbook.model.Group;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 public class CreateGroupTest extends TestBase {
-    public static List<Group> groupProvider() {
+    public static List<Group> groupProvider() throws IOException {
         var result = new ArrayList<Group>();
-        for (var name : List.of("", "group name")) {
+       /* for (var name : List.of("", "group name")) {
             for (var header : List.of("", "group header")) {
                 for (var footer : List.of("", "group footer")) {
                     result.add(new Group().withName(name).withHeader(header).withFooter(footer));
                 }
             }
-        }
-        for (int i = 0; i < 5; i++) {
-            result.add(new Group()
-                    .withName(Common.randomString(i * 10))
-                    .withHeader(Common.randomString(i * 10))
-                    .withFooter(Common.randomString(i * 10)));
-        }
+        }*/
+        ObjectMapper mapper = new ObjectMapper();
+        var value = mapper.readValue(new File("groups.json"), new TypeReference<List<Group>>(){});
+        result.addAll(value);
         return result;
     }
     @ParameterizedTest
