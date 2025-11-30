@@ -10,18 +10,20 @@ import java.util.Random;
 public class GroupModificationTest extends TestBase {
     @Test
     void CanModifyGroup() {
-        if (app.groups().getCount() == 0)
+        int groupCount = app.groups().getCount();
+        if (groupCount == 0)
         {
-            app.groups().CreateGroup(new Group("", "n", "h", "f"));
+            app.groups().CreateGroup(new Group());
         }
         var oldGroups = app.groups().getList();
         var random = new Random();
         var index = random.nextInt(oldGroups.size());
+        var groupToModify = oldGroups.get(index);
         var testData = new Group().withName("modified");
-        app.groups().modifyGroup(oldGroups.get(index), testData);
+        app.groups().modifyGroup(groupToModify, testData);
         var newGroups = app.groups().getList();
         var expectedList = new ArrayList<>(oldGroups);
-        expectedList.set(index, testData.withId(oldGroups.get(index).id()));
+        expectedList.set(index, testData.withId(oldGroups.get(index).id()).withName(testData.name()));
         Comparator<Group> comparedBy = Comparator.comparingInt(o -> Integer.parseInt(o.id()));
         newGroups.sort(comparedBy);
         expectedList.sort(comparedBy);

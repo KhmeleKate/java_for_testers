@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
+
 public class ModContact extends TestBase {
     @Test
     void CanModifyContact() {
